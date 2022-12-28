@@ -7,7 +7,7 @@ function HomeScreen() {
   const [tasks, setTask] = useState([]);
   const navigate = useNavigate();
 
-  function edit(id:string) {
+  function edit(id: string) {
     navigate("/edit/" + id);
   }
 
@@ -15,7 +15,7 @@ function HomeScreen() {
     const { data } = await axios.delete(
       "http://127.0.0.1:3001/api/v1/delete/" + id
     );
-    navigate("/deleted");
+    if (data) navigate("/deleted");
   }
 
   useEffect(() => {
@@ -80,7 +80,11 @@ function HomeScreen() {
                 </ul>
               </div>
               <div className="button">
-                <button type="button" id="buttongrey" onClick={() => edit(task._id)}>
+                <button
+                  type="button"
+                  id="buttongrey"
+                  onClick={() => edit(task._id)}
+                >
                   EDIT
                 </button>
                 <button
