@@ -7,7 +7,7 @@ function ViewScreen() {
 
   useEffect(() => {
     const loadTask = async () => {
-      const { data } = await axios.get("http://127.0.0.1:3001/api/v1/home");
+      const { data } = await axios.get("http://127.0.0.1:3001/api/v1/todo/home");
       const filter = data.filter((task: TASKS) => task.isDone === true);
       setFilteredTask(filter);
     };

@@ -109,3 +109,27 @@ button{
     background-color: darkgreen;
     
 }
+p{
+    cursor: pointer;
+}
+.hidden{
+    border: .1rem grey solid;
+    padding: .5rem;
+}
+#hidden{
+    width: 10rem;
+}
+#btn-smallx{
+    border: none;
+    color:red;
+    width:1.5rem;
+    height: 1.5rem;
+}
+#block{
+    display: none;
+}
+.nothidden{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

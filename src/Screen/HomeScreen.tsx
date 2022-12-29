@@ -13,14 +13,14 @@ function HomeScreen() {
 
   async function del(id: string) {
     const { data } = await axios.delete(
-      "http://127.0.0.1:3001/api/v1/delete/" + id
+      "http://127.0.0.1:3001/api/v1/todo/delete/" + id
     );
     if (data) navigate("/deleted");
   }
 
   useEffect(() => {
     const loadTask = async () => {
-      const { data } = await axios.get("http://127.0.0.1:3001/api/v1/home");
+      const { data } = await axios.get("http://127.0.0.1:3001/api/v1/todo/home");
       setTask(data);
     };
     loadTask();
@@ -34,7 +34,7 @@ function HomeScreen() {
             <div className="task-image">
               {task.isDone ? (
                 <img
-                  src="./images/todo-image.jpg"
+                  src="../images/todo-image.jpg"
                   alt="todo"
                   style={{
                     width: "15rem",
@@ -44,7 +44,7 @@ function HomeScreen() {
                 />
               ) : (
                 <img
-                  src="./images/redx.jpg"
+                  src="../images/redx.jpg"
                   alt="todo"
                   style={{
                     width: "15rem",

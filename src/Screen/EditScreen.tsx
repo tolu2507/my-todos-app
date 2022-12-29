@@ -31,11 +31,11 @@ function EditScreen() {
     console.log(update);
     
 
-    const { data } = await axios.put("http://127.0.0.1:3001/api/v1/update/" + id, update);
+    const { data } = await axios.put("http://127.0.0.1:3001/api/v1/todo/update/" + id, update);
     
     if (data) {
       alert("successfully updated")
-      navigate('/')
+      navigate('/home')
     }
 
   }
@@ -43,7 +43,7 @@ function EditScreen() {
   useEffect(() => {
     const loadTask = async (id: string | undefined) => {
       const { data } = await axios.get(
-        "http://127.0.0.1:3001/api/v1/home/" + id
+        "http://127.0.0.1:3001/api/v1/todo/home/" + id
       );
       setTask(data);
     };

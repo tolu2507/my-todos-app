@@ -23,13 +23,13 @@ function CreateScreen() {
     console.log(create);
 
     const { data } = await axios.post(
-      "http://127.0.0.1:3001/api/v1/todos",
+      "http://127.0.0.1:3001/api/v1/todo/todos",
       create
     );
 
     if (data) {
       alert("successfully created todo");
-      navigate("/");
+      navigate("/home");
     }
   }
 

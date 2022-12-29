@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from 'cors';
 import routers from "./router/todoRouter.js";
+import userRouter from "./router/usersRouter.js";
 
 
 dotenv.config();
@@ -13,7 +14,8 @@ let port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-app.use('/api/v1/', routers)
+app.use('/api/v1/todo/', routers)
+app.use('/api/v1/users/', userRouter)
 
 mongoose
   .connect(uri, {
