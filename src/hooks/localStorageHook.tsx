@@ -12,3 +12,8 @@ export function loadDb() {
   return db;
 }
 // export default db;
+
+export function clearDb() {
+  localStorage.clear();
+
+}

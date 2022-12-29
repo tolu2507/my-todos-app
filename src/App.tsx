@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { loadDb } from "./hooks/localStorageHook";
+import { BrowserRouter, Link, Route, Routes, useNavigate } from "react-router-dom";
+import { clearDb, loadDb } from "./hooks/localStorageHook";
 import { CREATEUSER } from "./inteface";
 
 import CreateScreen from "./Screen/CreateScreen";
@@ -14,6 +14,7 @@ import ViewScreen from "./Screen/ViewScreen";
 
 function App() {
   const [user, setName]: any = useState([]);
+  // const navigate = useNavigate();
 
   function handleToggle() {
     const div = document.querySelector<HTMLDivElement>("#block");
@@ -27,6 +28,11 @@ function App() {
     if (div !== null && div !== undefined) {
       div.style.display = "none";
     }
+  }
+
+  function handleClear() {
+    clearDb()
+    // return navigate('/')
   }
 
   useEffect(() => {
@@ -72,7 +78,9 @@ function App() {
                           <div>
                             <Link to="/share"> share</Link>
                           </div>
-                          <div>signin</div>
+                          <div onClick={handleClear}>
+                            <Link to="/">Logout</Link>
+                          </div>
                         </div>
                         <button
                           type="button"
@@ -99,23 +107,27 @@ function App() {
           })}
         </header>
         <aside className="App-aside">
-          <ul>
-            <li>
-              <Link to="/home">About Todo</Link>
-            </li>
-            <li>
-              <Link to="/create">Create Todo</Link>
-            </li>
-            <li>
-              <Link to="/checked">View Done Todo</Link>
-            </li>
-            <li>
-              <Link to="/unchecked">View Undone Todo</Link>
-            </li>
-            <li>
-              <Link to="/feedback&enquiries">Feedback and Enquiries</Link>
-            </li>
-          </ul>
+          {user.map((it: CREATEUSER) => {
+            return (
+              <ul>
+                <li>
+                  <Link to="/home">About Todo</Link>
+                </li>
+                <li>
+                  <Link to="/create">Create Todo</Link>
+                </li>
+                <li>
+                  <Link to="/checked">View Done Todo</Link>
+                </li>
+                <li>
+                  <Link to="/unchecked">View Undone Todo</Link>
+                </li>
+                <li>
+                  <Link to="/feedback&enquiries">Feedback and Enquiries</Link>
+                </li>
+              </ul>
+            );
+          })}
         </aside>
         <main className="App-body">
           <Routes>

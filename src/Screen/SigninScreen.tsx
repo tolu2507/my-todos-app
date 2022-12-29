@@ -10,8 +10,8 @@ function SigninScreen() {
     email: "",
     password: "",
     re_password: "",
-      isAdmin: false,
-    gender:""
+    isAdmin: false,
+    gender: "",
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
