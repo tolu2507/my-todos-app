@@ -1,10 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TASKS } from "../inteface";
 
 function UndoneScreen() {
   const [filteredTask, setFilteredTask] = useState([]);
+  const navigate = useNavigate();
+  function edit(id: string) {
+    navigate("/edit/" + id);
+  }
 
+  async function del(id: string) {
+    const { data } = await axios.delete(
+      "http://127.0.0.1:3001/api/v1/todo/delete/" + id
+    );
+    if (data) navigate("/deleted");
+  }
   useEffect(() => {
     const loadTask = async () => {
       const { data } = await axios.get("http://127.0.0.1:3001/api/v1/todo/home");
@@ -57,10 +68,10 @@ function UndoneScreen() {
                 </ul>
               </div>
               <div className="button">
-                <button type="button" id="buttongrey">
+                <button type="button" onClick={()=>edit(task._id)} id="buttongrey">
                   EDIT
                 </button>
-                <button type="button" id="buttonred">
+                <button type="button" onClick={()=>del(task._id)} id="buttonred">
                   DELETE
                 </button>
               </div>

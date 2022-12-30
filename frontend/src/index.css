@@ -36,8 +36,10 @@ li{
     margin: 1rem;
 }
 input{
-    padding: .5rem;
-    width :100%
+    width :100%;
+    padding:1rem;
+    border-radius:1rem;
+    border-color: lightblue
 }
 .App-input{
     width: 30%;
@@ -88,9 +90,12 @@ input{
     width: 25%;
 }
 button{
-    padding: .5rem;
+    /* padding: .5rem; */
     width: 49%;
     cursor: pointer;
+    padding: 1rem;
+    border-radius: 1rem;
+    border-color: "lightblue"
 }
 #buttongrey{
     background-color: grey;
