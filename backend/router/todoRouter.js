@@ -95,7 +95,7 @@ routers.route("/delete/:id").delete(async (req, res) => {
       const todo_deleted = todoModel.findByIdAndDelete(id_Deleted);
 
       if (todo_deleted) {
-        const suc_del = await todo_deleted.remove();
+        const suc_del = await todo_deleted.deleteOne(todo_deleted);
         suc_del
           ? res.status(201).send({ msg: "successfully deleted task." })
           : res.status(401).send({ msg: "unable to delete task." });
