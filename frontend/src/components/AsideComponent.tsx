@@ -24,13 +24,13 @@ function Aside() {
               <Link to="/create">Create Todo</Link>
             </li>
             <li>
-              <Link to="/checked">View Done Todo</Link>
+              <Link to="/checked">Done Todo</Link>
             </li>
             <li>
-              <Link to="/unchecked">View Undone Todo</Link>
+              <Link to="/unchecked">Undone Todo</Link>
             </li>
             <li>
-              <Link to="/feedback&enquiries">Feedback and Enquiries</Link>
+              <Link to="/feedback&enquiries">Feedback&Enquiries</Link>
             </li>
           </ul>
         );

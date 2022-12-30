@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { createTodo } from "../hooks/createuserHooks";
+import { handleClear } from "../hooks/toggleHooks";
 import { CREATEUSER } from "../inteface";
 
 function SigninScreen() {
+  handleClear();
   let details: CREATEUSER = {
     name: "",
     email: "",
@@ -28,15 +30,19 @@ function SigninScreen() {
   return (
     <>
       {
-        <div className="action">
-          <div className="task-details">
+        <div className="sign-action">
+          <div className="sign-task-details">
+            <div>
+              {" "}
+              <h1>LOGIN TO YOUR ACCOUNT</h1>
+            </div>
             <ul>
               <li>
                 <div>{name.name}</div>
               </li>
               <li>
                 <div>
-                  Task:{" "}
+                  <h3>Email : </h3>
                   <input
                     type="text"
                     name="email"
@@ -52,7 +58,7 @@ function SigninScreen() {
               </li>
               <li>
                 <div>
-                  Start:{" "}
+                  <h3>Password : </h3>
                   <input
                     type="text"
                     name="password"
@@ -72,11 +78,11 @@ function SigninScreen() {
                 </div>
               </li>
             </ul>
-          </div>
-          <div className="button">
-            <button type="button" id="buttongreen" onClick={handleCreateTodo}>
-              SIGIN
-            </button>
+            <div className="button">
+              <button type="button" id="buttongreen" onClick={handleCreateTodo}>
+                SIGIN
+              </button>
+            </div>
           </div>
         </div>
       }

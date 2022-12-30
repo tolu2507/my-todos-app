@@ -27,9 +27,13 @@ li{
     list-style-type: none;
 }
 :link{
+    width: 100%;
     text-decoration: none;
-    padding: none;
-    margin: none;
+    padding: .5rem;
+    background-color:aliceblue;
+    border-radius: 1rem;
+    color: black;
+    margin: 1rem;
 }
 input{
     padding: .5rem;
@@ -112,10 +116,6 @@ button{
 p{
     cursor: pointer;
 }
-.hidden{
-    border: .1rem grey solid;
-    padding: .5rem;
-}
 #hidden{
     width: 10rem;
 }
@@ -124,12 +124,54 @@ p{
     color:red;
     width:1.5rem;
     height: 1.5rem;
+    background-color: white;
 }
 #block{
     display: none;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
 }
 .nothidden{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.sign-action{
+    display: flex;
+    height: 82vh;
+}
+.sign-task-details{
+    margin: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 10rem;
+    border-radius: 2rem;
+    background-color: rgba(218, 241, 241, 0.979);
+    color: brown;
+}
+.sign-task-details ul{
+    width: 100%;
+}
+.create-action {
+    display: flex;
+}
+.create-task-details {
+    margin: .1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem;
+    border-radius: 2rem;
+    background-color: rgba(218, 241, 241, 0.979);
+    color: brown;
+}
+
+.create-task-details ul {
+    width: 100%;
 }

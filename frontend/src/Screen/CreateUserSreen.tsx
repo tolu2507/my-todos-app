@@ -21,12 +21,16 @@ function CreateUserScreen() {
   return (
     <>
       {
-        <div className="action">
-          <div className="task-details">
+        <div className="create-action">
+          <div className="create-task-details">
+            <div>
+              {" "}
+              <h1>CREATE ACCOUNT WITH US</h1>
+            </div>
             <ul>
               <li>
                 <div>
-                  Name:{" "}
+                  <h3>Name: </h3>
                   <input
                     type="text"
                     name="name"
@@ -42,7 +46,7 @@ function CreateUserScreen() {
               </li>
               <li>
                 <div>
-                  Email:{" "}
+                  <h3>Email: </h3>
                   <input
                     type="text"
                     name="email"
@@ -58,7 +62,7 @@ function CreateUserScreen() {
               </li>
               <li>
                 <div>
-                  Password:{" "}
+                  <h3>Password: </h3>
                   <input
                     type="text"
                     name="password"
@@ -74,7 +78,7 @@ function CreateUserScreen() {
               </li>
               <li>
                 <div>
-                  Re_password:{" "}
+                  <h3>Re_password: </h3>
                   <input
                     type="text"
                     name="re_password"
@@ -90,7 +94,7 @@ function CreateUserScreen() {
               </li>
               <li>
                 <div>
-                  gender:{" "}
+                  <h3>Gender: </h3>
                   <input
                     type="text"
                     name="gender"
@@ -110,11 +114,11 @@ function CreateUserScreen() {
                 </div>
               </li>
             </ul>
-          </div>
-          <div className="button">
-            <button type="button" id="buttongreen" onClick={handleCreateUser}>
-              SIGNUP
-            </button>
+            <div className="button">
+              <button type="button" id="buttongreen" onClick={handleCreateUser}>
+                SIGNUP
+              </button>
+            </div>
           </div>
         </div>
       }

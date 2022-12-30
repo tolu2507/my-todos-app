@@ -19,7 +19,24 @@ function Header() {
 
   return (
     <header className="App-header">
-      <div>TODO-LIST</div>
+      <div
+        style={{
+          fontSize: "Larger",
+          height: "5rem",
+          color:"royalblue"
+        }}
+      >
+        <p>
+          <h1>
+            <img
+              src="../todo-icon.jpeg"
+              alt="logo"
+              style={{ width: "2rem", height: "2rem" }}
+            />
+            TODO-LIST
+          </h1>
+        </p>
+      </div>
       {user.map((it: CREATEUSER) => {
         return (
           <div className="App-header-item">
@@ -52,6 +69,12 @@ function Header() {
                     <div>
                       <div>
                         <Link to="/feedback&enquiries"> share</Link>
+                      </div>
+                      <div>
+                        <pre></pre>
+                      </div>
+                      <div>
+                        <pre>*</pre>
                       </div>
                       <div onClick={handleClear}>
                         <Link to="/">Logout</Link>
