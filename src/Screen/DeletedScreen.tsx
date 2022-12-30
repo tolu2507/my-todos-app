@@ -1,11 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 export function DeleteScreen() {
-  useEffect(() => {
-    alert("deleted");
-  }, []);
+  alert("deleted");
   return (
-    <div>
-      <>Todo Successfully Deleted</>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "20rem",
+        border: ".1rem black solid",
+        padding: "5rem",
+        fontWeight: "bolder",
+        fontSize: "Larger",
+        backgroundColor: "red",
+        cursor:"pointer"
+      }}
+    >
+      <Link to="/home">Todo Successfully Deleted</Link>
     </div>
   );
 }
