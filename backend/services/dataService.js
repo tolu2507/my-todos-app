@@ -16,7 +16,7 @@ export async function Home(res) {
       return res.status(401).send({ data: "no todo available" });
     }
   } catch (error) {
-    throw error
+    throw error;
   }
 }
 
@@ -60,21 +60,16 @@ export async function CreateNewTodos(req, res) {
 
 export async function UpdateTodofunc(req, res) {
   try {
-    const todoId = {
-      _id: req.params.id,
+    const _id = req.params.id;
+    const obj = {
+      task: req.body.task,
+      time_stated: req.body.time_stated,
+      time_finished: req.body.time_finished,
+      isDone: req.body.isDone,
+      comment: req.body.comment,
     };
-    if (todoId) {
-      const data = await todoUser.Update(todoId);
-      if (data !== null || data !== undefined) {
-        return res
-          .status(201)
-          .send({ msg: `successfuly updated task${todoId}`, data: data });
-      } else {
-        res.status(401).send({ msg: `unsuccessful, please retry` });
-      }
-    } else {
-      res.status(401).send({ msg: "could not find task with that id" });
-    }
+    const data = await todoUser.Update(_id, obj)
+    return res.status(201).send(data);
   } catch (error) {
     throw error;
   }

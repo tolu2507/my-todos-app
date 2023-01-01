@@ -26,22 +26,28 @@ export class Database {
     const data = todoModel.findOne(query);
     if (data) return data;
   }
-  Create(new_todo) {
+  async Create(new_todo) {
     const to_do = new todoModel(new_todo);
-    const newTodo = to_do.save();
+    const newTodo = await to_do.save();
     if (newTodo) return newTodo;
   }
-  Update(todoId) {
-    const task = todoModel.findByIdAndUpdate(todoId);
-    if (task) {
-      task.task = req.body.task;
-      task.time_stated = req.body.time_stated;
-      task.time_finished = req.body.time_finished;
-      task.isDone = req.body.isDone;
-      task.comment = req.body.comment;
+  async Update(_id, obj) {
+    if (_id) {
+      const updateTodo = await todoModel.findByIdAndUpdate(_id);
+      if (updateTodo) {
+        (updateTodo.task = obj.task),
+          (updateTodo.isDone = obj.isDone),
+          (updateTodo.time_stated = obj.time_stated),
+          (updateTodo.time_finished = obj.time_finished),
+          (updateTodo.comment = obj.comment);
 
-      const newTask = task.save();
-      if (newTask) return newTask;
+        const newTsk = await updateTodo.save();
+        if (newTsk) {
+          return newTsk;
+        } else {
+          return { msg: "unable to update task, please try again" };
+        }
+      }
     }
   }
   Delete(deletedId) {

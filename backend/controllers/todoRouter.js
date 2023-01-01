@@ -1,4 +1,11 @@
-import { CreateConn, CreateNewTodos, DeleteTodoById, Home, HomeId, UpdateTodofunc } from "../services/dataService.js";
+import {
+  CreateConn,
+  CreateNewTodos,
+  DeleteTodoById,
+  Home,
+  HomeId,
+  UpdateTodofunc,
+} from "../services/dataService.js";
 
 export const GetTodos = async (req, res) => {
   try {
@@ -19,7 +26,7 @@ export const HomeById = async (req, res) => {
 
 export const CreateTodos = async (req, res) => {
   try {
-    CreateNewTodos(req, res)
+    CreateNewTodos(req, res);
   } catch (error) {
     console.log(error);
     res.status(404).send({ msg: error });
@@ -28,7 +35,7 @@ export const CreateTodos = async (req, res) => {
 
 export const UpdateTodos = async (req, res) => {
   try {
-    UpdateTodofunc(req, res)
+    UpdateTodofunc(req, res);
   } catch (error) {
     res.status(404).send({ msg: error });
   }
@@ -44,7 +51,7 @@ export const NewDb = async (req, res) => {
 
 export const DeleteTodo = async (req, res) => {
   try {
-      DeleteTodoById(req, res);
+    DeleteTodoById(req, res);
   } catch (error) {
     res.status(404).send({ msg: error });
   }
