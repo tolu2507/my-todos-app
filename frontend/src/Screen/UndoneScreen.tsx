@@ -14,7 +14,7 @@ function UndoneScreen() {
     const { data } = await axios.delete(
       "http://127.0.0.1:3001/api/v1/todo/delete/" + id
     );
-    if (data) navigate("/deleted");
+    return navigate("/deleted");
   }
   useEffect(() => {
     const loadTask = async () => {

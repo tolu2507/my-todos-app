@@ -1,5 +1,5 @@
 import { Database } from "../models/Data/todoDb.js";
-import { RESPONSE201, RESPONSE301, RESPONSE401 } from "../config/message.js";
+import { RESPONSE200, RESPONSE201, RESPONSE401 } from "../config/message.js";
 import { env } from "../config/environment.js";
 
 const uri = env.mongo_uri;
@@ -86,7 +86,7 @@ export async function DeleteTodoById(req, res) {
       if (data === null || data === undefined) {
         return RESPONSE401(res, "unable to delete task.");
       } else {
-        return RESPONSE301(res);
+        return RESPONSE200(res);
       }
     }
   } catch (error) {
