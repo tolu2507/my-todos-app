@@ -16,5 +16,8 @@ app.use(express.json());
 app.use(compression());
 app.use("/api/v1/todo/", routers);
 app.use("/api/v1/users/", userRouter);
+app.get('*', (req, res) => {
+    res.status(404).send({msg:"PAGE NOT FOUND"})
+})
 
 app.listen(port, () => console.log(`listening on port ${port}`));

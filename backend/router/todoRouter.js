@@ -1,21 +1,26 @@
-import express from "express";
-import { CreateTodos, DeleteTodo, GetTodos, HomeById, NewDb, UpdateTodos } from "../controllers/todoRouter.js";
-import { todoModel } from "../models/todoModels.js";
+import { Router } from "express";
+import { CREATE, DELETE, HOME, HOMEBYID, NEWHOME, UPDATE } from "../config/routesConstants.js";
+import {
+  CreateTodos,
+  DeleteTodo,
+  GetTodos,
+  HomeById,
+  NewDb,
+  UpdateTodos,
+} from "../controllers/todoRouter.js";
 
-const routers = express.Router();
+const routers = Router();
 
-routers.route("/home").get(GetTodos);
+routers.route(HOME).get(GetTodos);
 
-routers.route("/home/:id").get(HomeById);
+routers.route(HOMEBYID).get(HomeById);
 
-routers.route("/todos").post(CreateTodos);
+routers.route(CREATE).post(CreateTodos);
 
-routers.route("/update/:id").put(UpdateTodos);
+routers.route(UPDATE).put(UpdateTodos);
 
-routers.route("/moan").get(NewDb)
+routers.route(NEWHOME).get(NewDb);
 
-routers.route("/delete/:id").delete(DeleteTodo);
-
-
+routers.route(DELETE).delete(DeleteTodo);
 
 export default routers;

@@ -1,32 +1,40 @@
-import { todoModel } from "../models/todoModels.js";
 import { Connect, Database } from "../Data/todoDb.js";
 import dotenv from "dotenv";
-
+import { RESPONSE201, RESPONSE301, RESPONSE401 } from "../config/message.js";
 dotenv.config();
+
 const uri = process.env.MONGO_URI;
 const todoUser = new Database(uri);
 todoUser.init();
 
-export async function Home(res) {
+export async function TodoHome(res) {
   try {
     const todos = await todoUser.Read();
-    if (todos !== null || todos !== undefined) {
-      return res.status(201).send(todos);
+    if (todos === null || todos === undefined) {
+      return RESPONSE401(res, "no todo available");
     } else {
-      return res.status(401).send({ data: "no todo available" });
+      return RESPONSE201(res, todos);
     }
   } catch (error) {
     throw error;
   }
 }
 
-export async function HomeId(id, res) {
-  const query = { _id: id };
-  const todos = await todoUser.FindOne(query);
-  if (todos !== null || todos !== undefined) {
-    return res.status(201).send(todos);
-  } else {
-    return res.status(401).send({ data: "no todo available" });
+export async function TodoHomeById(id, res) {
+  try {
+    const query = { _id: id };
+    if (query) {
+      const todo = await todoUser.FindOne(query);
+      if (todo === null || todo === undefined) {
+        return RESPONSE401(res, "no todo available");
+      } else {
+        return RESPONSE201(res, todo);
+      }
+    } else {
+      return RESPONSE401(res, "Id is invalid");
+    }
+  } catch (error) {
+    throw error;
   }
 }
 
@@ -40,21 +48,13 @@ export async function CreateNewTodos(req, res) {
       comment: req.body.comment,
     };
     const data = await todoUser.Create(new_todo);
-    if (data !== null || data !== undefined) {
-      return res.status(201).send({
-        msg: "task created",
-        id: data._id,
-        task: data.task,
-        time_stated: data.time_stated,
-        time_finished: data.time_finished,
-        isDone: data.isDone,
-        comment: data.comment,
-      });
+    if (data === null || data === undefined) {
+      return RESPONSE401(res, " The Data is null or Undefined!!!!");
     } else {
-      res.send(401).send({ msg: " The Data is null or Undefined!!!!" });
+      return RESPONSE201(res, data);
     }
   } catch (error) {
-    res.send(404).send({ msg: "Unable to create user." });
+    throw error;
   }
 }
 
@@ -68,8 +68,12 @@ export async function UpdateTodofunc(req, res) {
       isDone: req.body.isDone,
       comment: req.body.comment,
     };
-    const data = await todoUser.Update(_id, obj)
-    return res.status(201).send(data);
+    const data = await todoUser.Update(_id, obj);
+    if (data === null || data === undefined) {
+      return RESPONSE401(res, "Unable to update the data");
+    } else {
+      return RESPONSE201(res, data);
+    }
   } catch (error) {
     throw error;
   }
@@ -80,18 +84,18 @@ export async function DeleteTodoById(req, res) {
     const id_Deleted = { _id: req.params.id };
     if (id_Deleted) {
       const data = await todoUser.Delete(id_Deleted);
-      data !== null || data !== undefined
-        ? res.status(201).send({ msg: "successfully deleted task." })
-        : res.status(401).send({ msg: "unable to delete task." });
-    } else {
-      res.status(401).send({
-        msg: "wrong id sent, please check the id and make sure its correct.",
-      });
+      if (data === null || data === undefined) {
+        return RESPONSE401(res, "unable to delete task.");
+      } else {
+        return RESPONSE301(res);
+      }
     }
-  } catch (error) {}
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function CreateConn(res) {
   const data = await Connect(uri);
-  res.status(201).send(data);
+  return RESPONSE201(res, data);
 }
