@@ -1,9 +1,8 @@
-import { Connect, Database } from "../Data/todoDb.js";
-import dotenv from "dotenv";
+import { Database } from "../models/Data/todoDb.js";
 import { RESPONSE201, RESPONSE301, RESPONSE401 } from "../config/message.js";
-dotenv.config();
+import { env } from "../config/environment.js";
 
-const uri = process.env.MONGO_URI;
+const uri = env.mongo_uri;
 const todoUser = new Database(uri);
 todoUser.init();
 

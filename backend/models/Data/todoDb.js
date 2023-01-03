@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
-import { todoModel } from "../models/todoModels.js";
+import { todoModel } from "../todoModels.js";
 
 export class Database {
   constructor(db) {
